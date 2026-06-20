@@ -224,7 +224,8 @@ section{padding:80px 0}
 .tab-content.active{display:block}
 
 /* ═══ PREDICTOR ═══ */
-.predictor-inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
+.predictor-inputs{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:12px;margin-bottom:16px}
+@media(max-width:600px){.predictor-inputs{grid-template-columns:1fr;}}
 .inp-label{font-size:10px;color:var(--muted);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
 .inp-field{
   width:100%;background:#0d1018;border:1px solid rgba(200,168,75,0.25);
@@ -234,27 +235,33 @@ section{padding:80px 0}
 .inp-field:focus{border-color:rgba(200,168,75,0.6);background:#111620;}
 select.inp-field{
   appearance:none;-webkit-appearance:none;
+  background-color:#0d1018 !important;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23c8a84b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat:no-repeat;
   background-position:right 12px center;
   background-size:14px;
   padding-right:36px;
   cursor:pointer;
+  color:#e0e6f0 !important;
 }
 select.inp-field option{
-  background:#0d1018;color:#e0e6f0;padding:8px;
+  background-color:#0d1018 !important;
+  color:#e0e6f0 !important;
 }
-select.inp-field option:checked{
-  background:#1a1f2e;color:#c8a84b;
+select.inp-field option:checked,select.inp-field option:hover{
+  background-color:#1c2030 !important;
+  color:#c8a84b !important;
 }
 .inp-field::placeholder{color:rgba(224,230,240,0.3);}
 .inp-field:focus{border-color:rgba(200,168,75,0.4)}
 .btn-predict{
   background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:#020408;border:none;padding:12px 28px;border-radius:50px;
-  font-size:13px;font-weight:800;cursor:pointer;width:100%;
+  color:#020408;border:none;padding:13px 40px;border-radius:50px;
+  font-size:13px;font-weight:800;cursor:pointer;
   font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:.3px;
+  display:inline-flex;align-items:center;gap:6px;
 }
+.btn-predict-wrap{text-align:center;margin-top:4px;}
 .predict-result{display:none;margin-top:20px;border-top:1px solid var(--border);padding-top:20px}
 .result-rank-box{
   background:rgba(200,168,75,0.06);border:1px solid rgba(200,168,75,0.15);
@@ -408,7 +415,7 @@ section[id]{scroll-margin-top:70px}
     </div>
 
     <div class="hero-btns">
-      <a href="#predictor" class="btn-primary">🎯 Score Predict Karo</a>
+      <a href="#predictor" class="btn-primary">🎯 Predict My NEET Rank</a>
       <a href="https://inwangai.com/register?source=MEDVERSE" class="btn-outline">Free Assessment →</a>
       <a href="https://inwangai.com" class="btn-outline" style="border-color:rgba(255,255,255,0.15);color:rgba(224,230,240,0.6)">← Home</a>
     </div>
@@ -557,8 +564,8 @@ section[id]{scroll-margin-top:70px}
 <section id="predictor">
 <div class="container">
   <div class="section-chip">AI Powered</div>
-  <h2 class="section-title">NEET Score Predictor</h2>
-  <p class="section-sub" style="margin-bottom:24px">Score aur category daalo — rank aur admission chances pata karo (NEET 2025 data based)</p>
+  <h2 class="section-title">Predict My NEET Rank</h2>
+  <p class="section-sub" style="margin-bottom:24px">Score daalo — AIR + Percentile + Admission options instantly milenge</p>
 
   <div class="card">
     <div class="predictor-inputs">
@@ -578,22 +585,6 @@ section[id]{scroll-margin-top:70px}
         </select>
       </div>
       <div>
-        <label class="inp-label">Your State</label>
-        <select class="inp-field" id="pred-state" onchange="clearResult()">
-          <option value="">Select State</option>
-          <option value="UP">Uttar Pradesh</option>
-          <option value="WB">West Bengal</option>
-          <option value="Maharashtra">Maharashtra</option>
-          <option value="Karnataka">Karnataka</option>
-          <option value="Tamil Nadu">Tamil Nadu</option>
-          <option value="Bihar">Bihar</option>
-          <option value="Rajasthan">Rajasthan</option>
-          <option value="MP">Madhya Pradesh</option>
-          <option value="Delhi">Delhi</option>
-          <option value="Other">Other State</option>
-        </select>
-      </div>
-      <div>
         <label class="inp-label">Preference</label>
         <select class="inp-field" id="pred-pref" onchange="clearResult()">
           <option value="both">India + Abroad</option>
@@ -602,7 +593,7 @@ section[id]{scroll-margin-top:70px}
         </select>
       </div>
     </div>
-    <button class="btn-predict" onclick="runPredictor()">🎯 Predict My Chances</button>
+    <div class="btn-predict-wrap"><button class="btn-predict" onclick="runPredictor()">🎯 Predict My NEET Rank</button></div>
 
     <div class="predict-result" id="pred-result">
       <div style="font-size:14px;font-weight:700;color:#e0e6f0;margin-bottom:16px" id="pred-summary"></div>
