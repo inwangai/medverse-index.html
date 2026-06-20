@@ -227,10 +227,27 @@ section{padding:80px 0}
 .predictor-inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
 .inp-label{font-size:10px;color:var(--muted);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
 .inp-field{
-  width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);
+  width:100%;background:#0d1018;border:1px solid rgba(200,168,75,0.25);
   border-radius:8px;padding:10px 14px;color:#e0e6f0;font-size:13px;
-  outline:none;font-family:'Plus Jakarta Sans',sans-serif;transition:border .2s;
+  outline:none;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;
 }
+.inp-field:focus{border-color:rgba(200,168,75,0.6);background:#111620;}
+select.inp-field{
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23c8a84b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 12px center;
+  background-size:14px;
+  padding-right:36px;
+  cursor:pointer;
+}
+select.inp-field option{
+  background:#0d1018;color:#e0e6f0;padding:8px;
+}
+select.inp-field option:checked{
+  background:#1a1f2e;color:#c8a84b;
+}
+.inp-field::placeholder{color:rgba(224,230,240,0.3);}
 .inp-field:focus{border-color:rgba(200,168,75,0.4)}
 .btn-predict{
   background:linear-gradient(135deg,var(--gold),var(--gold2));
@@ -551,7 +568,8 @@ section[id]{scroll-margin-top:70px}
       </div>
       <div>
         <label class="inp-label">Category</label>
-        <select class="inp-field" id="pred-cat" onchange="clearResult()">
+        <div style="position:relative">
+        <select class="inp-field" id="pred-cat" style="padding-right:32px" onchange="clearResult()">
           <option value="general">General</option>
           <option value="obc">OBC (NCL)</option>
           <option value="sc">SC</option>
