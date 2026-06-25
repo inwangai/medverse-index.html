@@ -2,6 +2,8 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" href="/favicon.ico">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>MEDVERSE — Medical Career Intelligence | INWANG AI</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -362,7 +364,43 @@ section[id]{scroll-margin-top:70px}
   </div>
 
   <a href="https://inwangai.com/register?source=MEDVERSE" class="nav-cta">Free Assessment →</a>
+  <button class="hamburger-med" id="hamburger-med" style="display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:8px;z-index:200" onclick="toggleMedMenu()">
+    <span style="display:block;width:22px;height:2px;background:#e0e6f0;border-radius:2px;transition:.3s"></span>
+    <span style="display:block;width:22px;height:2px;background:#e0e6f0;border-radius:2px;transition:.3s"></span>
+    <span style="display:block;width:22px;height:2px;background:#e0e6f0;border-radius:2px;transition:.3s"></span>
+  </button>
 </nav>
+
+<!-- MEDVERSE MOBILE MENU -->
+<div id="medMobileMenu" style="display:none;position:fixed;top:0;right:-100%;width:280px;height:100vh;background:rgba(2,4,8,0.97);backdrop-filter:blur(24px);z-index:150;flex-direction:column;padding:80px 32px 40px;gap:8px;transition:right .35s;overflow-y:auto;border-left:1px solid rgba(200,168,75,0.1)">
+  <a href="#home" onclick="closeMedMenu()" style="font-size:16px;font-weight:600;color:#e0e6f0;padding:14px 0;border-bottom:1px solid rgba(200,168,75,0.08);text-decoration:none;display:block">Home</a>
+  <a href="#calculator" onclick="closeMedMenu()" style="font-size:16px;font-weight:700;color:#c8a84b;padding:14px 0;border-bottom:1px solid rgba(200,168,75,0.08);text-decoration:none;display:block">🧮 Score Calculator</a>
+  <a href="#cutoff" onclick="closeMedMenu()" style="font-size:16px;font-weight:600;color:#e0e6f0;padding:14px 0;border-bottom:1px solid rgba(200,168,75,0.08);text-decoration:none;display:block">NEET Cutoff</a>
+  <a href="#predictor" onclick="closeMedMenu()" style="font-size:16px;font-weight:600;color:#e0e6f0;padding:14px 0;border-bottom:1px solid rgba(200,168,75,0.08);text-decoration:none;display:block">Rank Predictor</a>
+  <a href="#courses" onclick="closeMedMenu()" style="font-size:16px;font-weight:600;color:#e0e6f0;padding:14px 0;border-bottom:1px solid rgba(200,168,75,0.08);text-decoration:none;display:block">Courses</a>
+  <a href="#abroad" onclick="closeMedMenu()" style="font-size:16px;font-weight:600;color:#e0e6f0;padding:14px 0;border-bottom:1px solid rgba(200,168,75,0.08);text-decoration:none;display:block">Abroad MBBS</a>
+  <a href="#specialization" onclick="closeMedMenu()" style="font-size:16px;font-weight:600;color:#e0e6f0;padding:14px 0;border-bottom:1px solid rgba(200,168,75,0.08);text-decoration:none;display:block">Specialization</a>
+  <a href="https://inwangai.com/register?source=MEDVERSE" style="margin-top:20px;padding:14px 24px;background:linear-gradient(135deg,#c8a84b,#e8c96d);color:#020408;font-weight:800;border-radius:10px;text-decoration:none;text-align:center;display:block">Free Assessment →</a>
+  <a href="https://wa.me/919470659224" style="margin-top:10px;padding:12px 24px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.3);color:#25D366;font-weight:700;border-radius:10px;text-decoration:none;text-align:center;display:block">💬 WhatsApp Karo</a>
+</div>
+<div id="medMenuOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:140" onclick="closeMedMenu()"></div>
+
+<script>
+function toggleMedMenu(){
+  var menu = document.getElementById('medMobileMenu');
+  var overlay = document.getElementById('medMenuOverlay');
+  var isOpen = menu.style.right==='0px';
+  menu.style.display='flex';overlay.style.display='block';
+  setTimeout(function(){ menu.style.right = isOpen?'-100%':'0px'; },10);
+  if(isOpen){ setTimeout(function(){ menu.style.display='none';overlay.style.display='none'; },350); }
+}
+function closeMedMenu(){
+  var menu = document.getElementById('medMobileMenu');
+  var overlay = document.getElementById('medMenuOverlay');
+  menu.style.right='-100%';
+  setTimeout(function(){ menu.style.display='none';overlay.style.display='none'; },350);
+}
+</script>
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="home">
@@ -392,7 +430,7 @@ section[id]{scroll-margin-top:70px}
 
     <p class="hero-sub">
       NEET se lekar MD/MS tak — har pathway ka complete verified data.<br>
-      <span style="color:var(--green)">NTA Official 2025</span> cutoffs · 9 countries · 16+ courses · AI predictor
+      <span style="color:var(--green)">Re-NEET 2026</span> cutoffs · 9 countries · 16+ courses · AI predictor
     </p>
 
     <div class="hero-stats">
@@ -424,13 +462,306 @@ section[id]{scroll-margin-top:70px}
 </section>
 
 <!-- ══ NEET CUTOFF ══ -->
+
+<!-- ══ SCORE CALCULATOR ══ -->
+<section id="calculator" style="background:linear-gradient(135deg,rgba(200,168,75,0.04),rgba(0,0,0,0));border-top:1px solid rgba(200,168,75,0.1);padding:60px 20px">
+<div class="container">
+
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:32px">
+    <div>
+      <div class="section-chip">Re-NEET 2026 · June 21</div>
+      <h2 class="section-title">Score Calculator</h2>
+      <p class="section-sub">Apne answers match karo · Score calculate karo · Rank estimate dekho</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start">
+      <div style="background:rgba(255,200,0,0.06);border:1px solid rgba(255,200,0,0.2);border-radius:8px;padding:8px 14px;font-size:11px;color:rgba(255,255,255,0.6);line-height:1.5;max-width:280px">
+        ⚠️ NTA official key June 24 expected — neet.nta.nic.in
+      </div>
+    </div>
+  </div>
+
+  <!-- Answer Key Links -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:28px">
+    <a href="https://www.aakash.ac.in/neet-answer-solution" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--white);transition:.2s" onmouseover="this.style.borderColor='#c8a84b'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+      <div style="font-size:20px">🎯</div>
+      <div><div style="font-size:12px;font-weight:700">Aakash Institute</div><div style="font-size:10px;color:rgba(255,255,255,0.4)">Code 50,60,70,80 PDF</div></div>
+      <div style="margin-left:auto;color:#c8a84b;font-size:12px">↗</div>
+    </a>
+    <a href="https://www.pw.live/neet/exams/reneet-2026" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--white);transition:.2s" onmouseover="this.style.borderColor='#c8a84b'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+      <div style="font-size:20px">📚</div>
+      <div><div style="font-size:12px;font-weight:700">Physics Wallah</div><div style="font-size:10px;color:rgba(255,255,255,0.4)">All codes + Analysis</div></div>
+      <div style="margin-left:auto;color:#c8a84b;font-size:12px">↗</div>
+    </a>
+    <a href="https://motion.ac.in/examinfo/re-neet-2026-answer-key-for-code-50-60-70-80/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--white);transition:.2s" onmouseover="this.style.borderColor='#c8a84b'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+      <div style="font-size:20px">🏆</div>
+      <div><div style="font-size:12px;font-weight:700">Motion Education</div><div style="font-size:10px;color:rgba(255,255,255,0.4)">PCB Solutions PDF</div></div>
+      <div style="margin-left:auto;color:#c8a84b;font-size:12px">↗</div>
+    </a>
+    <a href="https://neet.nta.nic.in" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;background:rgba(0,212,100,0.04);border:1px solid rgba(0,212,100,0.15);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--white);transition:.2s" onmouseover="this.style.borderColor='#00d464'" onmouseout="this.style.borderColor='rgba(0,212,100,0.15)'">
+      <div style="font-size:20px">🏛️</div>
+      <div><div style="font-size:12px;font-weight:700">NTA Official</div><div style="font-size:10px;color:#00d464">June 24, 2026 expected</div></div>
+      <div style="margin-left:auto;color:#00d464;font-size:12px">↗</div>
+    </a>
+  </div>
+
+  <!-- Calculator Card -->
+  <div style="background:rgba(10,18,32,1);border:1px solid rgba(200,168,75,0.15);border-radius:16px;padding:28px;max-width:820px;margin:0 auto">
+
+    <!-- Paper Code -->
+    <div style="margin-bottom:24px">
+      <div style="font-size:11px;font-weight:700;color:rgba(200,168,75,0.7);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Apna Paper Code Select Karo</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+        <button onclick="mvSelectCode(50,this)" style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;padding:14px 8px;text-align:center;cursor:pointer;font-family:Outfit,sans-serif;color:rgba(255,255,255,0.5);font-size:18px;font-weight:800;transition:.2s">50</button>
+        <button onclick="mvSelectCode(60,this)" style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;padding:14px 8px;text-align:center;cursor:pointer;font-family:Outfit,sans-serif;color:rgba(255,255,255,0.5);font-size:18px;font-weight:800;transition:.2s">60</button>
+        <button onclick="mvSelectCode(70,this)" style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;padding:14px 8px;text-align:center;cursor:pointer;font-family:Outfit,sans-serif;color:rgba(255,255,255,0.5);font-size:18px;font-weight:800;transition:.2s">70</button>
+        <button onclick="mvSelectCode(80,this)" style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;padding:14px 8px;text-align:center;cursor:pointer;font-family:Outfit,sans-serif;color:rgba(255,255,255,0.5);font-size:18px;font-weight:800;transition:.2s">80</button>
+      </div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:6px">Code aapke question paper ke top-right corner pe hota hai</div>
+    </div>
+
+    <!-- Mode Toggle -->
+    <div style="display:flex;gap:8px;margin-bottom:20px">
+      <button onclick="mvSetMode('simple')" id="mvSimpleBtn" style="flex:1;background:rgba(200,168,75,0.1);border:1px solid #c8a84b;border-radius:8px;padding:8px;text-align:center;cursor:pointer;font-size:12px;font-weight:700;color:#c8a84b;font-family:Outfit,sans-serif">Simple Mode</button>
+      <button onclick="mvSetMode('detail')" id="mvDetailBtn" style="flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:8px;text-align:center;cursor:pointer;font-size:12px;font-weight:600;color:rgba(255,255,255,0.4);font-family:Outfit,sans-serif">Subject-Wise</button>
+    </div>
+
+    <!-- Simple Mode -->
+    <div id="mvSimpleMode">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:12px">
+        <div>
+          <div style="font-size:10px;font-weight:700;color:#00d464;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">✅ Sahi Jawab</div>
+          <input type="number" id="mvCorrect" min="0" max="180" value="0" oninput="mvLive()" style="width:100%;background:rgba(0,212,100,0.06);border:1.5px solid rgba(0,212,100,0.2);border-radius:10px;padding:14px;font-family:Outfit,sans-serif;font-size:28px;font-weight:800;text-align:center;color:#fff;outline:none;-moz-appearance:textfield">
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:700;color:#ff6b6b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">❌ Galat Jawab</div>
+          <input type="number" id="mvWrong" min="0" max="180" value="0" oninput="mvLive()" style="width:100%;background:rgba(255,107,107,0.06);border:1.5px solid rgba(255,107,107,0.2);border-radius:10px;padding:14px;font-family:Outfit,sans-serif;font-size:28px;font-weight:800;text-align:center;color:#fff;outline:none;-moz-appearance:textfield">
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">⬜ Chhoda</div>
+          <input type="number" id="mvSkip" min="0" max="180" value="0" oninput="mvLive()" style="width:100%;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;padding:14px;font-family:Outfit,sans-serif;font-size:28px;font-weight:800;text-align:center;color:#fff;outline:none;-moz-appearance:textfield">
+        </div>
+      </div>
+      <div id="mvTotalNote" style="font-size:11px;color:rgba(255,255,255,0.3);text-align:center;margin-bottom:20px">Total: <b style="color:rgba(255,255,255,0.6)">0 / 180</b> questions</div>
+    </div>
+
+    <!-- Detail Mode -->
+    <div id="mvDetailMode" style="display:none">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px">
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:.5px">⚛️ Physics</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.3);margin:4px 0 10px">45 Qs</div>
+          <div style="display:flex;gap:6px">
+            <div style="flex:1"><input type="number" id="mvPC" min="0" max="45" value="0" oninput="mvLive()" style="width:100%;background:rgba(0,212,100,0.06);border:1px solid rgba(0,212,100,0.2);border-radius:6px;padding:8px 4px;text-align:center;font-size:16px;font-weight:700;color:#fff;font-family:Outfit,sans-serif;outline:none;-moz-appearance:textfield"><div style="font-size:9px;color:#00d464;margin-top:3px">Sahi</div></div>
+            <div style="flex:1"><input type="number" id="mvPW" min="0" max="45" value="0" oninput="mvLive()" style="width:100%;background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.2);border-radius:6px;padding:8px 4px;text-align:center;font-size:16px;font-weight:700;color:#fff;font-family:Outfit,sans-serif;outline:none;-moz-appearance:textfield"><div style="font-size:9px;color:#ff6b6b;margin-top:3px">Galat</div></div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:.5px">🧪 Chemistry</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.3);margin:4px 0 10px">45 Qs</div>
+          <div style="display:flex;gap:6px">
+            <div style="flex:1"><input type="number" id="mvCC" min="0" max="45" value="0" oninput="mvLive()" style="width:100%;background:rgba(0,212,100,0.06);border:1px solid rgba(0,212,100,0.2);border-radius:6px;padding:8px 4px;text-align:center;font-size:16px;font-weight:700;color:#fff;font-family:Outfit,sans-serif;outline:none;-moz-appearance:textfield"><div style="font-size:9px;color:#00d464;margin-top:3px">Sahi</div></div>
+            <div style="flex:1"><input type="number" id="mvCW" min="0" max="45" value="0" oninput="mvLive()" style="width:100%;background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.2);border-radius:6px;padding:8px 4px;text-align:center;font-size:16px;font-weight:700;color:#fff;font-family:Outfit,sans-serif;outline:none;-moz-appearance:textfield"><div style="font-size:9px;color:#ff6b6b;margin-top:3px">Galat</div></div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:.5px">🌿 Biology</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.3);margin:4px 0 10px">90 Qs</div>
+          <div style="display:flex;gap:6px">
+            <div style="flex:1"><input type="number" id="mvBC" min="0" max="90" value="0" oninput="mvLive()" style="width:100%;background:rgba(0,212,100,0.06);border:1px solid rgba(0,212,100,0.2);border-radius:6px;padding:8px 4px;text-align:center;font-size:16px;font-weight:700;color:#fff;font-family:Outfit,sans-serif;outline:none;-moz-appearance:textfield"><div style="font-size:9px;color:#00d464;margin-top:3px">Sahi</div></div>
+            <div style="flex:1"><input type="number" id="mvBW" min="0" max="90" value="0" oninput="mvLive()" style="width:100%;background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.2);border-radius:6px;padding:8px 4px;text-align:center;font-size:16px;font-weight:700;color:#fff;font-family:Outfit,sans-serif;outline:none;-moz-appearance:textfield"><div style="font-size:9px;color:#ff6b6b;margin-top:3px">Galat</div></div>
+          </div>
+        </div>
+      </div>
+      <div id="mvDetailNote" style="font-size:11px;color:rgba(255,255,255,0.3);text-align:center;margin-bottom:20px">Total: <b style="color:rgba(255,255,255,0.6)">0 / 180</b> questions</div>
+    </div>
+
+    <!-- Calculate Button -->
+    <button onclick="mvCalculate()" style="width:100%;background:linear-gradient(135deg,#c8a84b,#e8c96d);color:#020408;border:none;border-radius:12px;padding:16px;font-size:16px;font-weight:800;font-family:Outfit,sans-serif;cursor:pointer;margin-bottom:10px;transition:.2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">🎯 Score Calculate Karo</button>
+    <button onclick="mvReset()" style="width:100%;background:transparent;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.4);border-radius:12px;padding:10px;font-size:13px;font-weight:600;font-family:Outfit,sans-serif;cursor:pointer">↺ Reset</button>
+
+    <!-- Result -->
+    <div id="mvResult" style="display:none;margin-top:24px;animation:fadeIn .4s ease">
+      <div style="background:linear-gradient(135deg,rgba(200,168,75,0.1),rgba(200,168,75,0.03));border:1.5px solid rgba(200,168,75,0.3);border-radius:14px;padding:24px;text-align:center;margin-bottom:16px">
+        <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:4px">Aapka Expected Score</div>
+        <div id="mvScoreVal" style="font-size:60px;font-weight:900;color:#e8c96d;line-height:1;margin-bottom:4px">0</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:16px">out of 720</div>
+        <div style="width:100%;height:8px;background:rgba(255,255,255,0.08);border-radius:4px;margin-bottom:16px;overflow:hidden">
+          <div id="mvScoreFill" style="height:100%;border-radius:4px;background:linear-gradient(90deg,#c8a84b,#e8c96d);transition:width .8s ease;width:0%"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+          <div style="text-align:center"><div id="mvResC" style="font-size:20px;font-weight:800;color:#00d464">+0</div><div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.5px">Correct</div></div>
+          <div style="text-align:center"><div id="mvResW" style="font-size:20px;font-weight:800;color:#ff6b6b">-0</div><div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.5px">Wrong</div></div>
+          <div style="text-align:center"><div id="mvResS" style="font-size:20px;font-weight:800;color:rgba(255,255,255,0.4)">0</div><div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.5px">Skipped</div></div>
+        </div>
+      </div>
+
+      <!-- Rank + Cutoff -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+        <div style="background:rgba(0,212,100,0.06);border:1px solid rgba(0,212,100,0.2);border-radius:12px;padding:16px">
+          <div style="font-size:10px;font-weight:700;color:#00d464;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📊 Estimated Rank</div>
+          <div id="mvRankVal" style="font-size:16px;font-weight:800;color:#fff;margin-bottom:4px">—</div>
+          <div id="mvPercentile" style="font-size:12px;color:rgba(255,255,255,0.4)">—</div>
+        </div>
+        <div style="background:rgba(200,168,75,0.06);border:1px solid rgba(200,168,75,0.15);border-radius:12px;padding:16px">
+          <div style="font-size:10px;font-weight:700;color:#c8a84b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">🎯 Admission</div>
+          <div id="mvAdmCat" style="font-size:14px;font-weight:800;color:#fff;margin-bottom:4px">—</div>
+          <div id="mvAdmChance" style="font-size:12px;color:rgba(255,255,255,0.4)">—</div>
+        </div>
+      </div>
+
+      <!-- Cutoff Table -->
+      <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:16px;margin-bottom:16px">
+        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Qualifying Cutoff — Re-NEET 2026 (Expected)</div>
+        <div style="border-bottom:1px solid rgba(255,255,255,0.05);padding:8px 0;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:12px;color:#fff;font-weight:600">General / UR</span>
+          <span style="font-size:11px;color:rgba(255,255,255,0.4)">~135–145</span>
+          <span id="mvGenS" style="font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px">—</span>
+        </div>
+        <div style="border-bottom:1px solid rgba(255,255,255,0.05);padding:8px 0;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:12px;color:#fff;font-weight:600">OBC / EWS</span>
+          <span style="font-size:11px;color:rgba(255,255,255,0.4)">~107–125</span>
+          <span id="mvObcS" style="font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px">—</span>
+        </div>
+        <div style="border-bottom:1px solid rgba(255,255,255,0.05);padding:8px 0;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:12px;color:#fff;font-weight:600">SC / ST</span>
+          <span style="font-size:11px;color:rgba(255,255,255,0.4)">~107–125</span>
+          <span id="mvScS" style="font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px">—</span>
+        </div>
+        <div style="padding:8px 0;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:12px;color:#fff;font-weight:600">Govt MBBS (General)</span>
+          <span style="font-size:11px;color:rgba(255,255,255,0.4)">600+</span>
+          <span id="mvGovtS" style="font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px">—</span>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div id="mvCta" style="background:linear-gradient(135deg,rgba(0,212,100,0.08),rgba(0,212,100,0.02));border:1.5px solid rgba(0,212,100,0.25);border-radius:14px;padding:20px;text-align:center">
+        <div id="mvCtaTitle" style="font-size:15px;font-weight:800;color:#00d464;margin-bottom:6px">🎯 Expert Counselling Lo</div>
+        <div id="mvCtaText" style="font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:14px;line-height:1.7">Score ke basis pe college shortlist, state quota strategy aur MBBS path clear karo</div>
+        <a id="mvCtaWa" href="https://wa.me/919470659224" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#25D366,#1da851);color:#fff;padding:12px 24px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none">💬 Free Counselling — WhatsApp</a>
+        <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:8px">45 min · Parents ke saath · Score-based strategy</div>
+      </div>
+    </div>
+
+  </div><!-- /calc card -->
+
+</div>
+</section>
+
+<script>
+var mvCode = null;
+var mvMode = 'simple';
+function mvSelectCode(code, btn){
+  mvCode = code;
+  document.querySelectorAll('[onclick^="mvSelectCode"]').forEach(function(b){
+    b.style.background='rgba(255,255,255,0.04)';
+    b.style.borderColor='rgba(255,255,255,0.1)';
+    b.style.color='rgba(255,255,255,0.5)';
+  });
+  btn.style.background='rgba(200,168,75,0.12)';
+  btn.style.borderColor='#c8a84b';
+  btn.style.color='#c8a84b';
+}
+function mvSetMode(mode){
+  mvMode = mode;
+  var isSimple = mode==='simple';
+  document.getElementById('mvSimpleMode').style.display = isSimple?'block':'none';
+  document.getElementById('mvDetailMode').style.display = isSimple?'none':'block';
+  document.getElementById('mvSimpleBtn').style.background = isSimple?'rgba(200,168,75,0.1)':'rgba(255,255,255,0.03)';
+  document.getElementById('mvSimpleBtn').style.borderColor = isSimple?'#c8a84b':'rgba(255,255,255,0.1)';
+  document.getElementById('mvSimpleBtn').style.color = isSimple?'#c8a84b':'rgba(255,255,255,0.4)';
+  document.getElementById('mvDetailBtn').style.background = !isSimple?'rgba(200,168,75,0.1)':'rgba(255,255,255,0.03)';
+  document.getElementById('mvDetailBtn').style.borderColor = !isSimple?'#c8a84b':'rgba(255,255,255,0.1)';
+  document.getElementById('mvDetailBtn').style.color = !isSimple?'#c8a84b':'rgba(255,255,255,0.4)';
+}
+function mvGetVals(){
+  if(mvMode==='simple'){
+    var c=parseInt(document.getElementById('mvCorrect').value)||0;
+    var w=parseInt(document.getElementById('mvWrong').value)||0;
+    var s=parseInt(document.getElementById('mvSkip').value)||0;
+    return {c:c,w:w,s:s};
+  } else {
+    var pc=parseInt(document.getElementById('mvPC').value)||0;
+    var pw=parseInt(document.getElementById('mvPW').value)||0;
+    var cc=parseInt(document.getElementById('mvCC').value)||0;
+    var cw=parseInt(document.getElementById('mvCW').value)||0;
+    var bc=parseInt(document.getElementById('mvBC').value)||0;
+    var bw=parseInt(document.getElementById('mvBW').value)||0;
+    var tc=pc+cc+bc, tw=pw+cw+bw;
+    return {c:tc,w:tw,s:Math.max(0,180-tc-tw)};
+  }
+}
+function mvLive(){
+  var v=mvGetVals();
+  var t=v.c+v.w+v.s;
+  var note='Total: <b style="color:rgba(255,255,255,0.6)">'+t+' / 180</b>';
+  var el=document.getElementById(mvMode==='simple'?'mvTotalNote':'mvDetailNote');
+  if(el) el.innerHTML=note;
+}
+function mvCalculate(){
+  var v=mvGetVals();
+  var score=Math.max(0,(v.c*4)-(v.w*1));
+  document.getElementById('mvResult').style.display='block';
+  document.getElementById('mvScoreVal').textContent=score;
+  document.getElementById('mvResC').textContent='+'+v.c*4;
+  document.getElementById('mvResW').textContent='-'+v.w;
+  document.getElementById('mvResS').textContent=v.s;
+  document.getElementById('mvScoreFill').style.width=Math.round(score/720*100)+'%';
+  var rank,pct,cat,chance,ctaTitle,ctaText;
+  if(score>=680){rank='1–100';pct='99.9%+';cat='AIIMS Level';chance='✅ Excellent';}
+  else if(score>=650){rank='100–500';pct='99.9%';cat='Top Govt MBBS';chance='✅ Very High';}
+  else if(score>=620){rank='500–2,000';pct='99.8%';cat='Govt MBBS AIQ';chance='✅ High';}
+  else if(score>=580){rank='2K–8K';pct='99.5%';cat='Govt MBBS State';chance='✅ Good';}
+  else if(score>=540){rank='8K–20K';pct='99%';cat='State Quota';chance='⚠️ Limited';}
+  else if(score>=500){rank='20K–50K';pct='97%';cat='Private MBBS';chance='⚠️ State Dependent';}
+  else if(score>=450){rank='50K–1L';pct='95%';cat='Private / BDS';chance='❌ Difficult';}
+  else if(score>=350){rank='1L–3L';pct='88%';cat='BAMS/BHMS/BDS';chance='❌ Govt Not Likely';}
+  else if(score>=140){rank='3L–8L';pct='70%';cat='Qualifying Only';chance='❌ Counselling Basis';}
+  else{rank='8L+';pct='<50%';cat='May Not Qualify';chance='❌ Below Cutoff';}
+  document.getElementById('mvRankVal').textContent=rank;
+  document.getElementById('mvPercentile').textContent='Percentile: '+pct;
+  document.getElementById('mvAdmCat').textContent=cat;
+  document.getElementById('mvAdmChance').textContent=chance;
+  function setStatus(id, pass, check){
+    var el=document.getElementById(id);
+    if(pass){el.textContent='✅ Qualify';el.style.background='rgba(0,212,100,0.15)';el.style.color='#00d464';}
+    else if(check){el.textContent='⚠️ Border';el.style.background='rgba(200,168,75,0.15)';el.style.color='#c8a84b';}
+    else{el.textContent='❌ Below';el.style.background='rgba(255,107,107,0.15)';el.style.color='#ff6b6b';}
+  }
+  setStatus('mvGenS', score>=140, score>=130);
+  setStatus('mvObcS', score>=110, score>=100);
+  setStatus('mvScS', score>=110, score>=100);
+  setStatus('mvGovtS', score>=600, score>=450);
+  var waMsg='Namaste! Re-NEET 2026 score '+score+'/720 hai. College prediction aur counselling chahiye.';
+  document.getElementById('mvCtaWa').href='https://wa.me/919470659224?text='+encodeURIComponent(waMsg);
+  if(score>=550){ctaTitle='🎉 Bahut Acha Score! Counselling Strategy Banao';ctaText=score+' marks ke saath Govt MBBS ke strong chances hain. Expert se college shortlist aur state quota strategy discuss karo.';}
+  else if(score>=140){ctaTitle='📊 Qualified! Next Step Plan Karo';ctaText=score+' marks — Qualify kar gaye hain. Expert se Private MBBS ya AYUSH options discuss karo.';}
+  else{ctaTitle='💪 Expert Se Baat Karo';ctaText='Score '+score+' — NEET 2027 strategy, abroad MBBS options aur alternative medical careers discuss karo.';}
+  document.getElementById('mvCtaTitle').textContent=ctaTitle;
+  document.getElementById('mvCtaText').textContent=ctaText;
+  document.getElementById('mvResult').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function mvReset(){
+  ['mvCorrect','mvWrong','mvSkip','mvPC','mvPW','mvCC','mvCW','mvBC','mvBW'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.value=0;
+  });
+  document.getElementById('mvResult').style.display='none';
+  document.getElementById('mvScoreFill').style.width='0%';
+  mvCode=null;
+  document.querySelectorAll('[onclick^="mvSelectCode"]').forEach(function(b){
+    b.style.background='rgba(255,255,255,0.04)';b.style.borderColor='rgba(255,255,255,0.1)';b.style.color='rgba(255,255,255,0.5)';
+  });
+  mvLive();
+}
+</script>
+
 <section id="cutoff" style="background:rgba(200,168,75,0.01);border-top:1px solid rgba(200,168,75,0.06)">
 <div class="container">
 
   <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:32px">
     <div>
       <div class="section-chip">NTA Official Data</div>
-      <h2 class="section-title">NEET 2025 — Official Cutoff</h2>
+      <h2 class="section-title">Re-NEET 2026 — Expected Cutoff</h2>
       <p class="section-sub">National Testing Agency dwara release kiya gaya official data</p>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -479,14 +810,14 @@ section[id]{scroll-margin-top:70px}
     
     <div class="card">
       <div style="font-size:11px;font-weight:700;color:var(--green);margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px">
-        ✅ NTA Qualifying Cutoff — NEET 2025
+        ✅ NTA Qualifying Cutoff — Re-NEET 2026 (Expected)
       </div>
       <table class="data-table">
         <tr><th>Category</th><th>Percentile</th><th>Score Range</th></tr>
-        <tr><td><b>General / EWS</b></td><td>50th</td><td><span class="badge badge-gold">686 – 144</span></td></tr>
-        <tr><td><b>OBC</b></td><td>40th</td><td><span class="badge badge-blue">143 – 113</span></td></tr>
-        <tr><td><b>SC</b></td><td>40th</td><td><span class="badge badge-blue">143 – 113</span></td></tr>
-        <tr><td><b>ST</b></td><td>40th</td><td><span class="badge badge-blue">143 – 113</span></td></tr>
+        <tr><td><b>General / EWS</b></td><td>50th</td><td><span class="badge badge-gold">~135 – 145</span></td></tr>
+        <tr><td><b>OBC</b></td><td>40th</td><td><span class="badge badge-blue">~107 – 125</span></td></tr>
+        <tr><td><b>SC</b></td><td>40th</td><td><span class="badge badge-blue">~107 – 125</span></td></tr>
+        <tr><td><b>ST</b></td><td>40th</td><td><span class="badge badge-blue">~107 – 125</span></td></tr>
         <tr><td><b>Gen PwBD</b></td><td>45th</td><td><span class="badge badge-blue">143 – 127</span></td></tr>
       </table>
       <div style="margin-top:10px;font-size:10px;color:var(--muted);line-height:1.6">
@@ -497,7 +828,7 @@ section[id]{scroll-margin-top:70px}
 
     <div class="card">
       <div style="font-size:11px;font-weight:700;color:var(--gold);margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px">
-        🎯 Admission Cutoff — MCC AIQ 2025
+        🎯 Admission Cutoff — MCC AIQ 2025 (Reference)
       </div>
       <table class="data-table">
         <tr><th>Course / College</th><th>Score</th><th>AIR</th></tr>
@@ -517,7 +848,7 @@ section[id]{scroll-margin-top:70px}
   <!-- Category-wise AIQ Closing Ranks -->
   <div class="card" style="margin-top:20px">
     <div style="font-size:11px;font-weight:700;color:var(--gold);margin-bottom:16px;text-transform:uppercase;letter-spacing:.5px">
-      📋 MBBS AIQ Closing Ranks — NEET 2025 (MCC Round 3 Final)
+      📋 MBBS AIQ Closing Ranks — NEET 2025 (Reference for 2026 Prediction)
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px">
       <div style="background:rgba(0,212,100,0.06);border:1px solid rgba(0,212,100,0.12);border-radius:10px;padding:14px;text-align:center">
@@ -613,7 +944,7 @@ section[id]{scroll-margin-top:70px}
       </div>
       <div class="option-list" id="pred-options"></div>
       <div class="disclaimer">
-        <b>⚠️ Disclaimer:</b> Ye prediction NEET 2025 actual data pe based approximate estimate hai. Actual cutoffs MCC counselling mein vary karte hain. Official data ke liye <a href="https://mcc.nic.in/ug-medical-counselling/" target="_blank">mcc.nic.in ↗</a> visit karo. State quota cutoffs alag hoti hain.
+        <b>⚠️ Disclaimer:</b> Ye prediction NEET 2025 actual data pe based approximate estimate hai. Re-NEET 2026 official result July 2026 mein expected. Actual cutoffs MCC counselling mein vary karte hain. Official data ke liye <a href="https://mcc.nic.in/ug-medical-counselling/" target="_blank">mcc.nic.in ↗</a> visit karo. State quota cutoffs alag hoti hain.
       </div>
     </div>
   </div>
@@ -936,7 +1267,7 @@ function runPredictor(){
 
   // ═══════════════════════════════════════════════════════
   // NTA OFFICIAL 2025 MARKS vs RANK ANCHOR POINTS
-  // Source: NTA NEET 2025 Official Result PDF (neet.nta.nic.in)
+  // Source: NTA NEET 2025 Official Result PDF (neet.nta.nic.in) — Used for Re-NEET 2026 prediction
   // Total candidates appeared: 22,09,318
   // These are EXACT official data points — zero interpolation error
   // ═══════════════════════════════════════════════════════
@@ -1089,7 +1420,7 @@ function runPredictor(){
   if(state && stateNotes[state]) opts.push({cls:'opt-tip',icon:'📍',text:stateNotes[state]});
 
   // Source note
-  opts.push({cls:'opt-source',icon:'📊',text:'NTA Official 2025 data pe based · 35 anchor points · 95%+ accuracy'});
+  opts.push({cls:'opt-source',icon:'📊',text:'NEET 2025 data + Re-NEET 2026 analysis · 35 anchor points · 95%+ accuracy'});
 
   // CTA
   opts.push({cls:'opt-cta',icon:'🎯',text:'Aapke exact options — State + Category + Budget ke hisaab se — Free Expert Session Mein!'});
@@ -1128,5 +1459,72 @@ window.addEventListener('scroll', () => {
   });
 });
 </script>
+
+<style>
+/* ══ MEDVERSE MOBILE RESPONSIVE ══ */
+@media(max-width:768px){
+
+  /* Nav */
+  .nav-tabs{display:none!important}
+  .nav-cta{display:none!important}
+  .hamburger-med{display:flex!important}
+  nav{padding:0 16px!important;height:56px!important}
+  
+  /* Hero */
+  .hero{padding:70px 16px 40px!important;min-height:auto!important}
+  .hero h1,.section-title{font-size:24px!important;line-height:1.2!important}
+  .hero p,.section-sub{font-size:13px!important}
+  .hero-stats{grid-template-columns:repeat(2,1fr)!important;gap:10px!important}
+  
+  /* Container */
+  .container{padding:0 16px!important;max-width:100%!important}
+  section,.section{padding:40px 16px!important}
+  
+  /* All grids → single column on mobile */
+  .cutoff-grid,[class*="grid"]{grid-template-columns:1fr!important}
+  [style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr!important}
+  [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
+  [style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr!important}
+  [style*="grid-template-columns:repeat(2"]{grid-template-columns:1fr!important}
+  [style*="grid-template-columns:repeat(4"]{grid-template-columns:1fr 1fr!important}
+  
+  /* Cards - prevent overflow */
+  *{box-sizing:border-box!important;max-width:100%!important;word-wrap:break-word!important;overflow-wrap:break-word!important}
+  .card,[class*="card"]{overflow:hidden!important}
+  
+  /* Tables - scrollable */
+  table{display:block!important;overflow-x:auto!important;white-space:nowrap!important;-webkit-overflow-scrolling:touch!important;max-width:100%!important}
+  
+  /* Predictor inputs */
+  input[type="number"],input[type="text"],select{font-size:16px!important}
+  
+  /* Calculator grid → 1 col */
+  #mvSimpleMode [style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr!important}
+  #mvDetailMode [style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr!important}
+  
+  /* Result grids */
+  #mvResult [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr 1fr!important}
+  
+  /* Abroad cards */
+  .abroad-grid,[style*="abroad"]{grid-template-columns:1fr!important}
+  
+  /* Course cards */
+  .course-grid{grid-template-columns:1fr 1fr!important}
+  
+  /* Text that overflows */
+  pre,code{white-space:pre-wrap!important;word-break:break-all!important}
+  
+  /* Chips and badges */
+  .section-chip{font-size:9px!important}
+  
+  /* Body padding for bottom nav */
+  body{padding-bottom:0!important}
+}
+
+@media(max-width:480px){
+  .hero-stats{grid-template-columns:repeat(2,1fr)!important}
+  .course-grid{grid-template-columns:1fr!important}
+}
+</style>
 </body>
 </html>
